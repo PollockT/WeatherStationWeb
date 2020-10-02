@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="479" android:versionName="4.7.9" android:compileSdkVersion="30" android:compileSdkVersionCodename="11" package="com.arf.weatherstation" platformBuildVersionCode="30" platformBuildVersionName="11">
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="30"/>
+    <supports-screens android:anyDensity="true" android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="com.android.vending.CHECK_LICENSE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-feature android:name="android.hardware.location" android:required="false"/>
+    <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
+    <uses-feature android:name="android.hardware.location.network" android:required="false"/>
+    <uses-feature android:name="android.hardware.wifi" android:required="false"/>
+    <uses-feature android:name="android.hardware.screen.portrait" android:required="false"/>
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+    <uses-feature android:glEsVersion="20000" android:required="true"/>
+    <uses-permission android:name="com.android.vending.BILLING"/>
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:name="com.arf.weatherstation.ApplicationContext" android:allowBackup="false" android:usesCleartextTraffic="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory">
+        <activity android:theme="@style/ColourFragment" android:label="@string/app_name" android:name="com.arf.weatherstation.ActivityMain">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DESK_DOCK"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:theme="@style/ColourFragment" android:name="com.arf.weatherstation.ActivityWidgetConfigure">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
+        <activity android:theme="@style/Preferences" android:label="@string/display_prefs" android:name="com.arf.weatherstation.ActivitySettings"/>
+        <activity android:theme="@style/ColourFragment" android:name="com.arf.weatherstation.ActivityHelp"/>
+        <activity android:theme="@style/Chart" android:name="com.arf.weatherstation.ActivityChartTemperature"/>
+        <activity android:theme="@style/Chart" android:name="com.arf.weatherstation.ActivityChartPressure"/>
+        <activity android:theme="@style/Chart" android:name="com.arf.weatherstation.ActivityChartCombined"/>
+        <activity android:theme="@style/Chart" android:name="com.arf.weatherstation.ActivityChartWind"/>
+        <activity android:theme="@style/Chart" android:name="com.arf.weatherstation.ActivityChartHumidity"/>
+        <activity android:theme="@style/Chart" android:name="com.arf.weatherstation.ActivityChartSolar"/>
+        <activity android:theme="@style/Chart" android:name="com.arf.weatherstation.ActivityChartRain"/>
+        <activity android:theme="@style/Chart" android:name="com.arf.weatherstation.ActivityChartClimate"/>
+        <activity android:name="com.arf.weatherstation.ActivityMapStation"/>
+        <activity android:theme="@style/ColourFragment" android:name="com.arf.weatherstation.ActivityPlayAudio"/>
+        <activity android:theme="@style/AppTheme" android:name="com.arf.weatherstation.ActivityWebView" android:configChanges="keyboardHidden|navigation|orientation"/>
+        <activity android:theme="@style/AppTheme" android:name="com.arf.weatherstation.ActivityWeatherMap" android:configChanges="keyboardHidden|navigation|orientation"/>
+        <activity android:name="com.arf.weatherstation.ActivityHourlyForecast"/>
+        <activity android:name="com.arf.weatherstation.ActivityCrisisMap"/>
+        <activity android:name="com.arf.weatherstation.ActivityRealEarth"/>
+        <activity android:name="com.arf.weatherstation.ActivityRadar"/>
+        <activity android:name="com.arf.weatherstation.ActivityWarnings"/>
+        <activity android:theme="@style/Theme.AppCompat" android:label="@string/title_activity_login" android:name="com.arf.weatherstation.netatmo.NetatmoLoginActivity"/>
+        <activity android:name="com.arf.weatherstation.ActivityBilling" android:configChanges="keyboardHidden|navigation|orientation"/>
+        <receiver android:label="Weather Station 4x4" android:name="com.arf.weatherstation.WeatherWidget4x4Provider" android:configure="com.arf.weatherstation.ActivityWidgetConfigure">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.arf.weatherstation.WIDGET_UPDATE_4x4"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_4x4"/>
+        </receiver>
+        <receiver android:label="Weather Station 4x3" android:name="com.arf.weatherstation.WeatherWidget4x3Provider" android:configure="com.arf.weatherstation.ActivityWidgetConfigure">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.arf.weatherstation.WIDGET_UPDATE_4x3"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_4x3"/>
+        </receiver>
+        <receiver android:label="Weather Station 4x2" android:name="com.arf.weatherstation.WeatherWidget4x2Provider" android:configure="com.arf.weatherstation.ActivityWidgetConfigure">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.arf.weatherstation.WIDGET_UPDATE_4x2"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_4x2"/>
+        </receiver>
+        <receiver android:label="Weather Station 4x1" android:name="com.arf.weatherstation.WeatherWidget4x1Provider" android:configure="com.arf.weatherstation.ActivityWidgetConfigure">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.arf.weatherstation.WIDGET_UPDATE_4x1"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_4x1"/>
+        </receiver>
+        <receiver android:name="com.arf.weatherstation.receiver.NetworkReceiver" android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.arf.weatherstation.receiver.PowerReceiver" android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.arf.weatherstation.receiver.RepeatingAlarmReceiver" android:enabled="true" android:exported="false"/>
+        <receiver android:name="com.arf.weatherstation.receiver.RepeatingAlarmReceiverForecast" android:enabled="true" android:exported="false"/>
+        <receiver android:name="com.arf.weatherstation.receiver.TalkingAlarmReceiver" android:enabled="true" android:exported="false"/>
+        <receiver android:name="com.arf.weatherstation.receiver.BootReceiver" android:enabled="true" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.arf.weatherstation.receiver.ScreenLockReceiver"/>
+        <service android:name="com.arf.weatherstation.WidgetIntentService" android:enabled="true" android:exported="false">
+            <intent-filter>
+                <action android:name="com.arf.weatherstation.WidgetIntentService"/>
+                <action android:name="com.arf.weatherstation.WIDGET_UPDATE_4x1"/>
+                <action android:name="com.arf.weatherstation.WIDGET_UPDATE_4x2"/>
+                <action android:name="com.arf.weatherstation.WIDGET_UPDATE_4x3"/>
+                <action android:name="com.arf.weatherstation.WIDGET_UPDATE_4x4"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.arf.weatherstation.ServiceTalkingClock" android:enabled="true" android:exported="false">
+            <intent-filter>
+                <action android:name="com.arf.weatherstation.ServiceTalkingClock"/>
+            </intent-filter>
+        </service>
+        <service android:label="Weather DayDream" android:name="com.arf.weatherstation.dream.WeatherDreamService" android:permission="android.permission.BIND_DREAM_SERVICE" android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.arf.weatherstation.UpdateService" android:enabled="true" android:exported="false">
+            <intent-filter>
+                <action android:name="com.arf.weatherstation.UpdateService"/>
+                <action android:name="com.arf.weatherstation.UPDATE"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.arf.weatherstation.ScreenLockService" android:exported="false"/>
+        <receiver android:name="com.arf.weatherstation.receiver.LocationReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="com.arf.weatherstation.receiver.action.PROCESS_UPDATES"/>
+            </intent-filter>
+        </receiver>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <uses-library android:name="com.google.android.maps" android:required="false"/>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAWQ3KL_lEmbiGu_xOH0GK4P_GrKM1-H7w"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-6335724350905188~6704037476"/>
+        <meta-data android:name="com.google.android.play.billingclient.version" android:value="3.0.0"/>
+        <activity android:theme="@style/Theme.Translucent.NoTitleBar" android:name="com.android.billingclient.api.ProxyBillingActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+        <activity android:theme="@style/Theme.Translucent.NoTitleBar" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:exported="false"/>
+        <activity android:theme="@style/Theme.Translucent" android:name="com.google.android.gms.ads.AdActivity" android:exported="false" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+        <provider android:name="com.google.android.gms.ads.MobileAdsInitProvider" android:exported="false" android:authorities="com.arf.weatherstation.mobileadsinitprovider" android:initOrder="100"/>
+    </application>
+</manifest>
